@@ -2,33 +2,18 @@ skip_branch_with_pr: true
 
 environment:
   matrix:
-    - LIB_TYPE: shared
-      CONFIG: auto
-      CC: gcc
-      THREADING: pthreads
-      CBLAS: no
 
     - LIB_TYPE: static
-      CONFIG: auto
+      CONFIG: cortexa57
       CC: clang
       THREADING: no
-
-    - LIB_TYPE: shared
-      CONFIG: x86_64
-      CC: clang
-      THREADING: pthreads
-
-    - LIB_TYPE: static
-      CONFIG: auto
-      CC: clang
-      THREADING: openmp
 
 install:
 - set "PATH=C:\msys64\mingw64\bin;C:\msys64\bin;%PATH%"
 - if [%CC%]==[clang] set "PATH=C:\Program Files\LLVM\bin;%PATH%"
 - if [%CC%]==[clang] set "AR=llvm-ar"
 - if [%CC%]==[clang] set "AS=llvm-as"
-- if [%CC%]==[clang] call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
+- if [%CC%]==[clang] call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsx86_arm64.bat"
 
 build_script:
 - if [%LIB_TYPE%]==[shared] set "CONFIGURE_OPTS=%CONFIGURE_OPTS% --enable-shared --disable-static"
