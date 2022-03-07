@@ -196,6 +196,11 @@ MK_CONFIG_OBJS      := $(call gen-obj-paths-from-src,$(CONFIG_SRC_SUFS),$(MK_CON
 # fragments into those specific kernel subdirectories.
 MK_KERNELS_OBJS     := $(call gen-obj-paths-from-src,$(KERNELS_SRC_SUFS),$(MK_KERNELS_SRC),$(KERNELS_PATH),$(BASE_OBJ_KERNELS_PATH))
 
+mytest:
+	@echo "BLAH", $(CONFIG_SRC_SUFS), $(MK_CONFIG_SRC),$(CONFIG_PATH),$(BASE_OBJ_CONFIG_PATH)
+	@echo "MK_CONFIG_OBJS", $(call gen-obj-paths-from-src,$(CONFIG_SRC_SUFS),$(MK_CONFIG_SRC),$(CONFIG_PATH),$(BASE_OBJ_CONFIG_PATH))
+	@echo "MK_KERNELS_OBJS", $(call gen-obj-paths-from-src,$(KERNELS_SRC_SUFS),$(MK_KERNELS_SRC),$(KERNELS_PATH),$(BASE_OBJ_KERNELS_PATH))
+
 # Generate object file paths for reference kernels, with one set of object
 # files for each sub-configuration in CONFIG_LIST. Note that due to the
 # nuances of naming the reference kernel files, we can't use the function
